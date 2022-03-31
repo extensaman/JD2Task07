@@ -4,21 +4,24 @@ import java.util.Objects;
 
 @MyTable(name = "person")
 public class Person {
-    @MyColumn(name = "id")
-    private final Integer id;
+    @MyColumn(name = "identifier")
+    private Integer identifier;
     @MyColumn(name = "surname")
-    private final String surname;
+    private String surname;
     @MyColumn(name = "name")
-    private final String name;
+    private String name;
 
-    public Person(Integer id, String surname, String name) {
-        this.id = id;
+    public Person(Integer identifier, String surname, String name) {
+        this.identifier = identifier;
         this.surname = surname;
         this.name = name;
     }
 
+    public Person() {
+    }
+
     public Integer getId() {
-        return id;
+        return identifier;
     }
 
     public String getSurname() {
@@ -34,20 +37,20 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(id, person.id) &&
+        return Objects.equals(identifier, person.identifier) &&
                 Objects.equals(surname, person.surname) &&
                 Objects.equals(name, person.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, surname, name);
+        return Objects.hash(identifier, surname, name);
     }
 
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + id +
+                "identifier=" + identifier +
                 ", surname='" + surname + '\'' +
                 ", name='" + name + '\'' +
                 '}';

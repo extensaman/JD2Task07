@@ -1,16 +1,13 @@
 package by.academy.it.task07.dao;
 
-import java.util.List;
+import java.util.Map;
 
 public interface EntityDao {
-    List select() throws EntityDaoException;
+    Map<Long, Object> select() throws EntityDaoException;
 
-    int update(int id, Object[] params) throws EntityDaoException;
+    void update(Long id, Object entity) throws EntityDaoException;
 
-    int delete(int id) throws EntityDaoException;
+    void delete(Long id) throws EntityDaoException;
 
-    int insert(Object entity) throws EntityDaoException;
-
-    default void closeDao() throws EntityDaoException {
-    };
+    void insert(Object entity) throws EntityDaoException;
 }
