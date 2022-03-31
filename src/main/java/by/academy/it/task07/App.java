@@ -19,7 +19,7 @@ public class App {
         Map<Long, Object> list = dao.select();
         System.out.println("Inserted\n" + list);
         Person person4 = new Person(4000, "Forth", "Bill");
-        dao.update(1L, person4);
+        dao.update(8L, person4);
 
     }
 }

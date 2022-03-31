@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -23,8 +24,9 @@ public class EntityDaoMySQLImpl implements EntityDao {
     public static final String DELETE_STATEMENT = "DELETE FROM %s WHERE id = %d";
     public static final String INSERT_STATEMENT = "INSERT INTO %s (%s) VALUES (%s)";
     public static final String UPDATE_STATEMENT = "UPDATE %s SET %s WHERE id = %d";
-    public static final String SINGLE_QUOTE = "'";
-    public static final String COMMA = ",";
+    public static final String SINGLE_QUOTE_SIGN = "'";
+    public static final String COMMA_SIGN = ",";
+    public static final String EQUAL_SIGN = "=";
     private final String tableName;
     private final String[] tableColumnNames;
     private final String[] classFieldNames;
@@ -127,8 +129,8 @@ public class EntityDaoMySQLImpl implements EntityDao {
                             String.format(UPDATE_STATEMENT,
                                     tableName,
                                     IntStream.range(0, tableColumnNames.length)
-                                            .mapToObj(i -> tableColumnNames[i].concat("=").concat(params[i]))
-                                            .collect(Collectors.joining(COMMA)),
+                                            .mapToObj(i -> tableColumnNames[i].concat(EQUAL_SIGN).concat(params[i]))
+                                            .collect(Collectors.joining(COMMA_SIGN)),
                                     id
                             ));
         } catch (SQLException e) {
@@ -173,8 +175,8 @@ public class EntityDaoMySQLImpl implements EntityDao {
                     statement.executeUpdate( //INSERT INTO %s (%s) VALUES (%s)
                             String.format(INSERT_STATEMENT,
                                     tableName,
-                                    String.join(COMMA, tableColumnNames),
-                                    String.join(COMMA, params)
+                                    String.join(COMMA_SIGN, tableColumnNames),
+                                    String.join(COMMA_SIGN, params)
                             ));
 
         } catch (SQLException e) {
@@ -193,7 +195,7 @@ public class EntityDaoMySQLImpl implements EntityDao {
                 field.setAccessible(true);
                 Object fieldValue = field.get(entity);
                 if (fieldValue instanceof CharSequence) {
-                    fieldValue = SINGLE_QUOTE.concat(((CharSequence) fieldValue).toString()).concat(SINGLE_QUOTE);
+                    fieldValue = SINGLE_QUOTE_SIGN.concat(((CharSequence) fieldValue).toString()).concat(SINGLE_QUOTE_SIGN);
                 }
                 param[i] = fieldValue.toString();
                 field.setAccessible(false);
