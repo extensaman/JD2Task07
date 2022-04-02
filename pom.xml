@@ -19,6 +19,14 @@
     </properties>
 
     <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.0-alpha7</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -50,6 +58,14 @@
             <artifactId>checkstyle</artifactId>
             <version>10.1</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>4.9.0</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -106,6 +122,19 @@
                             <version>10.0</version>
                         </dependency>
                     </dependencies>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.liquibase</groupId>
+                    <artifactId>liquibase-maven-plugin</artifactId>
+                    <version>4.9.0</version>
+                    <configuration>
+                        <changeLogFile>src/main/resources/liquibase/changeLog/master-changelog.xml</changeLogFile>
+                        <driver>com.mysql.cj.jdbc.Driver</driver>
+                        <url>jdbc:mysql://localhost:3306/db_team</url>
+                        <username>root</username>
+                        <password>grigorovich_1</password>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
