@@ -41,12 +41,6 @@
         </dependency>
 
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.28</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>2.1.210</version>
@@ -64,6 +58,13 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
             <version>4.9.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
         </dependency>
 
 
@@ -129,11 +130,7 @@
                     <artifactId>liquibase-maven-plugin</artifactId>
                     <version>4.9.0</version>
                     <configuration>
-                        <changeLogFile>src/main/resources/liquibase/changeLog/master-changelog.xml</changeLogFile>
-                        <driver>com.mysql.cj.jdbc.Driver</driver>
-                        <url>jdbc:mysql://localhost:3306/db_team</url>
-                        <username>root</username>
-                        <password>grigorovich_1</password>
+                        <propertyFile>liquibaseForMySql_DB.properties</propertyFile>
                     </configuration>
                 </plugin>
             </plugins>
