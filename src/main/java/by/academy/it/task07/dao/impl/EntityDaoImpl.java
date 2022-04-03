@@ -16,27 +16,29 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class EntityDaoMySQLImpl implements EntityDao {
-    public static final String SELECT_STATEMENT = "SELECT * FROM %s";
-    public static final String DELETE_STATEMENT = "DELETE FROM %s WHERE id = %d";
-    public static final String INSERT_STATEMENT = "INSERT INTO %s (%s) VALUES (%s)";
-    public static final String UPDATE_STATEMENT = "UPDATE %s SET %s WHERE id = %d";
-    public static final String SINGLE_QUOTE_SIGN = "'";
-    public static final String COMMA_SIGN = ",";
-    public static final String EQUAL_SIGN = "=";
+public class EntityDaoImpl implements EntityDao {
+    private static final String SELECT_STATEMENT = "SELECT * FROM %s";
+    private static final String DELETE_STATEMENT = "DELETE FROM %s WHERE id = %d";
+    private static final String INSERT_STATEMENT = "INSERT INTO %s (%s) VALUES (%s)";
+    private static final String UPDATE_STATEMENT = "UPDATE %s SET %s WHERE id = %d";
+    private static final String SINGLE_QUOTE_SIGN = "'";
+    private static final String COMMA_SIGN = ",";
+    private static final String EQUAL_SIGN = "=";
     private final String tableName;
     private final String[] tableColumnNames;
     private final String[] classFieldNames;
     private final Constructor constructor;
     public static ConnectionProvider connectionProvider;
 
-    public EntityDaoMySQLImpl(Class aClass, DBVariety nameOfDatabase) throws EntityDaoException {
+    public EntityDaoImpl(Class aClass, DBVariety nameOfDatabase) throws EntityDaoException {
 
         switch (nameOfDatabase) {
             case H2:
                 connectionProvider = new ConnectionPoolProviderH2();
+                break;
             case MYSQL:
                 connectionProvider = new ConnectionPoolProviderMySQL();
+                break;
         }
 
         // check class for ability to persistence
