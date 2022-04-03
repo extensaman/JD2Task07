@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ConnectionPoolProviderMySQL implements ConnectionProvider{
-    public static final String DATABASE_CONFIG_FILE_NAME = "database";
-    public static final String URL_ALIAS = "url";
-    public static final String USER_ALIAS = "user";
-    public static final String PASSWORD_ALIAS = "password";
+    private static final String DATABASE_CONFIG_FILE_NAME = "database";
+    private static final String URL_ALIAS = "url";
+    private static final String USER_ALIAS = "user";
+    private static final String PASSWORD_ALIAS = "password";
     private static HikariDataSource dataSource;
 
 
