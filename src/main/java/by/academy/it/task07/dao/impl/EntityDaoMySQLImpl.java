@@ -101,7 +101,7 @@ public class EntityDaoMySQLImpl implements EntityDao {
     public Map<Long, Object> select() throws EntityDaoException {
         Map<Long, Object> map = new HashMap<>();
         try (
-                Connection connection = ConnectionProvider.getConnection();
+                Connection connection = connectionProvider.getConnection();
                 Statement statement = connection.createStatement();
                 ResultSet resultSet =
                         statement.executeQuery( // SELECT * FROM %s
@@ -126,7 +126,7 @@ public class EntityDaoMySQLImpl implements EntityDao {
         String[] params = getObjectParam(entity);
 
         try (
-                Connection connection = ConnectionProvider.getConnection();
+                Connection connection = connectionProvider.getConnection();
                 Statement statement = connection.createStatement();
         ) {
             updatedCount =
@@ -151,7 +151,7 @@ public class EntityDaoMySQLImpl implements EntityDao {
     public void delete(Long id) throws EntityDaoException {
         int deletedCount = 0;
         try (
-                Connection connection = ConnectionProvider.getConnection();
+                Connection connection = connectionProvider.getConnection();
                 Statement statement = connection.createStatement();
         ) {
             deletedCount =
@@ -173,7 +173,7 @@ public class EntityDaoMySQLImpl implements EntityDao {
         String[] params = getObjectParam(entity);
 
         try (
-                Connection connection = ConnectionProvider.getConnection();
+                Connection connection = connectionProvider.getConnection();
                 Statement statement = connection.createStatement();
         ) {
             insertedCount =
