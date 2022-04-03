@@ -130,7 +130,9 @@
                     <artifactId>liquibase-maven-plugin</artifactId>
                     <version>4.9.0</version>
                     <configuration>
-                        <propertyFile>liquibaseForMySql_DB.properties</propertyFile>
+                        <!--                        <propertyFile>src/main/resources/liquibase/properties/liquibaseForMySql_DB.properties</propertyFile>-->
+                        <propertyFile>src/main/resources/liquibase/properties/liquibaseForH2_DB.properties
+                        </propertyFile>
                     </configuration>
                 </plugin>
             </plugins>
