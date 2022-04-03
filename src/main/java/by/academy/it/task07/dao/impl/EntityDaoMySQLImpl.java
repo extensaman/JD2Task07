@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -33,17 +32,15 @@ public class EntityDaoMySQLImpl implements EntityDao {
     private final Constructor constructor;
 
     public EntityDaoMySQLImpl(Class aClass) throws EntityDaoException {
-
         // check class for ability to persistence
         if (aClass.isAnnotationPresent(MyTable.class)) {
             tableName = ((MyTable) aClass.getAnnotation(MyTable.class)).name();
         } else {
             throw new EntityDaoException("No 'MyTable' annotation");
         }
-
+        int fieldCount =0;
         // looking for annotated fields
         Field[] fields = aClass.getDeclaredFields();
-        int fieldCount = 0;
         for (Field field : fields) {
             field.setAccessible(true);
             if (field.isAnnotationPresent(MyColumn.class)) {
