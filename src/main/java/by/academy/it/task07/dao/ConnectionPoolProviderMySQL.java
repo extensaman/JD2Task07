@@ -19,7 +19,7 @@ public class ConnectionPoolProviderMySQL implements ConnectionProvider{
            }
 
 
-    public Connection getConnection() throws EntityDaoException {
+     public Connection getConnection() throws EntityDaoException {
 
         if (dataSource == null) {
             ResourceBundle bundle = ResourceBundle.getBundle(DATABASE_CONFIG_FILE_NAME);

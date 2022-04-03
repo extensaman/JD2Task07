@@ -17,7 +17,7 @@ public class ConnectionPoolProviderH2 implements ConnectionProvider {
     public ConnectionPoolProviderH2() {
     }
 
-    public Connection getConnection() throws EntityDaoException {
+     public Connection getConnection() throws EntityDaoException {
         if (dataSource == null) {
             ResourceBundle bundle = ResourceBundle.getBundle(DATABASE_CONFIG_FILE_NAME);
             HikariConfig config = new HikariConfig();

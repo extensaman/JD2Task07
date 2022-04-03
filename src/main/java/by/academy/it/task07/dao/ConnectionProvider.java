@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 public interface ConnectionProvider {
 
-     static Connection getConnection() {
+      default Connection getConnection() throws EntityDaoException{
         return null;
     };
 
