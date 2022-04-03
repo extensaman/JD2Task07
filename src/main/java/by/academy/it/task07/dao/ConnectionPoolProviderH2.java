@@ -7,17 +7,17 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ConnectionPoolProvider {
-    public static final String DATABASE_CONFIG_FILE_NAME = "database";
+public class ConnectionPoolProviderH2 implements ConnectionProvider {
+    public static final String DATABASE_CONFIG_FILE_NAME = "databaseH2";
     public static final String URL_ALIAS = "url";
     public static final String USER_ALIAS = "user";
     public static final String PASSWORD_ALIAS = "password";
     private static HikariDataSource dataSource;
 
-    private ConnectionPoolProvider() {
+    public ConnectionPoolProviderH2() {
     }
 
-    public static Connection getConnection() throws EntityDaoException {
+    public Connection getConnection() throws EntityDaoException {
         if (dataSource == null) {
             ResourceBundle bundle = ResourceBundle.getBundle(DATABASE_CONFIG_FILE_NAME);
             HikariConfig config = new HikariConfig();
@@ -26,7 +26,7 @@ public class ConnectionPoolProvider {
             config.setPassword(bundle.getString(PASSWORD_ALIAS));
             dataSource = new HikariDataSource(config);
         }
-        Connection connection = null;
+        Connection connection;
         try {
             connection = dataSource.getConnection();
         } catch (SQLException e) {
@@ -35,3 +35,4 @@ public class ConnectionPoolProvider {
         return connection;
     }
 }
+

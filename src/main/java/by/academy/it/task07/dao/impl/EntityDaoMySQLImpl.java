@@ -1,8 +1,6 @@
 package by.academy.it.task07.dao.impl;
 
-import by.academy.it.task07.dao.ConnectionPoolProvider;
-import by.academy.it.task07.dao.EntityDao;
-import by.academy.it.task07.dao.EntityDaoException;
+import by.academy.it.task07.dao.*;
 import by.academy.it.task07.entity.MyColumn;
 import by.academy.it.task07.entity.MyTable;
 
@@ -15,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -31,8 +28,16 @@ public class EntityDaoMySQLImpl implements EntityDao {
     private final String[] tableColumnNames;
     private final String[] classFieldNames;
     private final Constructor constructor;
+    public static ConnectionProvider connectionProvider;
 
-    public EntityDaoMySQLImpl(Class aClass) throws EntityDaoException {
+    public EntityDaoMySQLImpl(Class aClass, DBVariety nameOfDatabase) throws EntityDaoException {
+
+        switch (nameOfDatabase) {
+            case H2:
+                connectionProvider = new ConnectionPoolProviderH2();
+            case MYSQL:
+                connectionProvider = new ConnectionPoolProviderMySQL();
+        }
 
         // check class for ability to persistence
         if (aClass.isAnnotationPresent(MyTable.class)) {
@@ -96,7 +101,7 @@ public class EntityDaoMySQLImpl implements EntityDao {
     public Map<Long, Object> select() throws EntityDaoException {
         Map<Long, Object> map = new HashMap<>();
         try (
-                Connection connection = ConnectionPoolProvider.getConnection();
+                Connection connection = ConnectionProvider.getConnection();
                 Statement statement = connection.createStatement();
                 ResultSet resultSet =
                         statement.executeQuery( // SELECT * FROM %s
@@ -121,7 +126,7 @@ public class EntityDaoMySQLImpl implements EntityDao {
         String[] params = getObjectParam(entity);
 
         try (
-                Connection connection = ConnectionPoolProvider.getConnection();
+                Connection connection = ConnectionProvider.getConnection();
                 Statement statement = connection.createStatement();
         ) {
             updatedCount =
@@ -146,7 +151,7 @@ public class EntityDaoMySQLImpl implements EntityDao {
     public void delete(Long id) throws EntityDaoException {
         int deletedCount = 0;
         try (
-                Connection connection = ConnectionPoolProvider.getConnection();
+                Connection connection = ConnectionProvider.getConnection();
                 Statement statement = connection.createStatement();
         ) {
             deletedCount =
@@ -168,7 +173,7 @@ public class EntityDaoMySQLImpl implements EntityDao {
         String[] params = getObjectParam(entity);
 
         try (
-                Connection connection = ConnectionPoolProvider.getConnection();
+                Connection connection = ConnectionProvider.getConnection();
                 Statement statement = connection.createStatement();
         ) {
             insertedCount =
