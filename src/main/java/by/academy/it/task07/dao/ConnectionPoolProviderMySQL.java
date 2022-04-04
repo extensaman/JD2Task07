@@ -16,8 +16,7 @@ public class ConnectionPoolProviderMySQL implements ConnectionProvider{
 
 
     public ConnectionPoolProviderMySQL() {
-           }
-
+    }
 
      public Connection getConnection() throws EntityDaoException {
 
@@ -37,4 +36,6 @@ public class ConnectionPoolProviderMySQL implements ConnectionProvider{
         }
         return connection;
     }
+
+
 }

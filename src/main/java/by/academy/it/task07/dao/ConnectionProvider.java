@@ -5,8 +5,8 @@ import java.sql.SQLException;
 
 public interface ConnectionProvider {
 
-      default Connection getConnection() throws EntityDaoException, SQLException {
+    default Connection getConnection() throws EntityDaoException, SQLException {
         return null;
-    };
+    }
 
 }

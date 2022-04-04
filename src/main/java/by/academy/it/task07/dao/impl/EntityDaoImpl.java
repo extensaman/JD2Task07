@@ -212,4 +212,5 @@ public class EntityDaoImpl implements EntityDao {
         }
         return param;
     }
+
 }
