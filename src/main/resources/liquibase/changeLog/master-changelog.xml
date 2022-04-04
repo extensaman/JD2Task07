@@ -3,9 +3,7 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd
-    http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd ">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
     <changeSet id="1" author="by_Grigorovich" labels="example-label" context="example-context">
         <comment>example-comment</comment>
@@ -26,6 +24,41 @@
             <column name="surname" value="Hryharovich"/>
             <column name="name" value="Alexander"/>
         </insert>
-            </changeSet>
+    </changeSet>
 
+    <changeSet id="3" author="by_Grigorovich" labels="example-label" context="example-context">
+        <comment>example-comment</comment>
+        <insert tableName="person">
+            <column name="identifier" value='3423'/>
+            <column name="surname" value="Second"/>
+            <column name="name" value="James"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="4" author="by_Grigorovich" labels="example-label" context="example-context">
+        <comment>example-comment</comment>
+        <insert tableName="person">
+            <column name="identifier" value='2131'/>
+            <column name="surname" value="Third"/>
+            <column name="name" value="Alfred"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="5" author="by_Grigorovich" labels="example-label" context="example-context">
+        <comment>example-comment</comment>
+        <insert tableName="person">
+            <column name="identifier" value='6565'/>
+            <column name="surname" value="Norris"/>
+            <column name="name" value="Chuck"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="6" author="by_Grigorovich" labels="example-label" context="example-context">
+        <comment>example-comment</comment>
+        <insert tableName="person">
+            <column name="identifier" value='5654'/>
+            <column name="surname" value="Gates"/>
+            <column name="name" value="Bill"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>

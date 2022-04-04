@@ -196,7 +196,10 @@ public class EntityDaoImpl implements EntityDao {
                 field.setAccessible(true);
                 Object fieldValue = field.get(entity);
                 if (fieldValue instanceof CharSequence) {
-                    fieldValue = SINGLE_QUOTE_SIGN.concat(((CharSequence) fieldValue).toString()).concat(SINGLE_QUOTE_SIGN);
+                    fieldValue = SINGLE_QUOTE_SIGN
+                            .concat(((CharSequence) fieldValue)
+                                    .toString())
+                            .concat(SINGLE_QUOTE_SIGN);
                 }
                 param[i] = fieldValue.toString();
                 field.setAccessible(false);

@@ -2,6 +2,9 @@ package by.academy.it.task07.entity;
 
 import java.util.Objects;
 
+/**
+ *
+ */
 @MyTable(name = "person")
 public class Person {
     @MyColumn(name = "identifier")
