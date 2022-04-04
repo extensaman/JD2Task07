@@ -13,16 +13,18 @@
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(50)"></column>
+            <column name="identifier" type="int"/>
             <column name="surname" type="varchar(50)"/>
+            <column name="name" type="varchar(50)"/>
         </createTable>
     </changeSet>
 
     <changeSet id="2" author="by_Grigorovich" labels="example-label" context="example-context">
         <comment>example-comment</comment>
         <insert tableName="person">
-            <column name="name" value="Alexander"></column>
-            <column name="surname" value="Hryharovich"></column>
+            <column name="identifier" value='1770'/>
+            <column name="surname" value="Hryharovich"/>
+            <column name="name" value="Alexander"/>
         </insert>
             </changeSet>
 

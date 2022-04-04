@@ -1,5 +1,6 @@
-package by.academy.it.task07.dao;
+package by.academy.it.task07.dao.impl;
 
+import by.academy.it.task07.dao.EntityDaoException;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -7,22 +8,21 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ConnectionPoolProviderMySQL implements ConnectionProvider{
-    private static final String DATABASE_CONFIG_FILE_NAME = "database";
+public class ConnectionPool {
+    private ResourceBundle bundle;
     private static final String URL_ALIAS = "url";
     private static final String USER_ALIAS = "user";
     private static final String PASSWORD_ALIAS = "password";
-    private static HikariDataSource dataSource;
+    private HikariDataSource dataSource;
 
 
-    public ConnectionPoolProviderMySQL() {
-           }
+    public ConnectionPool(ResourceBundle bundle) {
+        this.bundle = bundle;
+    }
 
 
-     public Connection getConnection() throws EntityDaoException {
-
+    public Connection getConnection() throws EntityDaoException {
         if (dataSource == null) {
-            ResourceBundle bundle = ResourceBundle.getBundle(DATABASE_CONFIG_FILE_NAME);
             HikariConfig config = new HikariConfig();
             config.setJdbcUrl(bundle.getString(URL_ALIAS));
             config.setUsername(bundle.getString(USER_ALIAS));
