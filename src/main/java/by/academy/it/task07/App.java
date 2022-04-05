@@ -9,6 +9,42 @@ import by.academy.it.task07.entity.Person;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+/**
+ * There is a Person entity, it has
+ * - an identifier;
+ * - a first name
+ * - a last name.
+ *
+ * <p>The task is to create a project. Adding a table to the database must be done through liquibase,
+ * make tests using H2.</p>
+ * <p>Cover functionality with tests and make a report using the jacoco plugin.</p>
+ * <p>Connect checkstyle to the project.</p>
+ * <p>For the Person entity, make a DAO over each field, write your own annotation
+ * MyColumn(name - the name of the column) with the name of the column,
+ * write the annotation MyTable(name - the name of the table) above the Person class.
+ * Implement CRUD operations on Person using jdbc</p>
+ *
+ * - select
+ * - update
+ * - delete
+ * - insert
+ *
+ * <p>Moreover, these operations should make a request to the database using the annotations
+ * MyColumn and MyTable (through reflection). i.e. if the user of this API creates another entity, then</p>
+ * - select
+ * - update
+ * - delete
+ * - insert
+ * <p>should work without changing the internal logic</p>
+ *
+ * @author LidiaZh
+ * @author JustShooter Aliaksei Iyunski
+ * @author Flashsan
+ * @author Sergey060890
+ * @author Yusikau Aliaksandr
+ * @version 1.0
+ */
+
 public class App {
     public static final String DATABASE_MY_SQL = "databaseMySQL";
     public static final long ID_FOR_UPDATE = 4L;
