@@ -53,6 +53,13 @@
             <version>10.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.7</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
         <dependency>
             <groupId>org.liquibase</groupId>
@@ -66,17 +73,10 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.28</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.7</version>
-        </dependency>
-
     </dependencies>
 
     <build>
-        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (maybe moved to parent pom) -->
             <plugins>
                 <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
                 <plugin>
@@ -135,9 +135,8 @@
                     <artifactId>liquibase-maven-plugin</artifactId>
                     <version>4.9.0</version>
                     <configuration>
-                        <!--                        <propertyFile>src/main/resources/liquibase/properties/liquibaseForMySql_DB.properties</propertyFile>-->
-                        <propertyFile>src/main/resources/liquibase/properties/liquibaseForH2_DB.properties
-                        </propertyFile>
+                        <propertyFile>src/main/resources/liquibase/properties/liquibaseForMySql_DB.properties</propertyFile>
+                        <!--<propertyFile>src/main/resources/liquibase/properties/liquibaseForH2_DB.properties</propertyFile>-->
                     </configuration>
                 </plugin>
             </plugins>
@@ -148,18 +147,22 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.7</version>
                 <executions>
-                    <!-- attached to Maven test phase -->
                     <execution>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
+                    <!-- attached to Maven test phase -->
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <dataFile>target/jacoco.exec</dataFile>
+                            <outputDirectory>target/my-reports</outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
