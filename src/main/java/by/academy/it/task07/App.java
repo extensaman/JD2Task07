@@ -62,6 +62,15 @@ public final class App {
      * Constant id for delete.
      */
     public static final long ID_FOR_DELETE = 2L;
+    /**
+     * Just 4000.
+     */
+    public static final int INCOMING_IDENTIFIER_4000 = 4000;
+
+    /**
+     * Just 7777.
+     */
+    public static final int INCOMING_IDENTIFIER_7777 = 7777;
 
     private App() {
     }
@@ -77,7 +86,7 @@ public final class App {
         EntityDao dao = new EntityDaoImpl(Person.class, connectionPool);
 
         printMap("Original DB:", dao.select());
-        Person person4 = new Person(4000, "Forth", "Bill");
+        Person person4 = new Person(INCOMING_IDENTIFIER_4000, "Forth", "Bill");
         System.out.println("\nCreate Person(4000, \"Forth\", \"Bill\")");
 
         dao.update(ID_FOR_UPDATE, person4);
@@ -88,7 +97,7 @@ public final class App {
         printMap("\nDeleted position #" + ID_FOR_DELETE
                 + " :", dao.select());
 
-        dao.insert(new Person(7777, "Black", "Jack"));
+        dao.insert(new Person(INCOMING_IDENTIFIER_7777, "Black", "Jack"));
         printMap("\nInserted Person(7777, \"Black\", \"Jack\"):", dao.select());
     }
 
