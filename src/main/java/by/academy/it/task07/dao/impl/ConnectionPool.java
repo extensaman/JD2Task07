@@ -8,19 +8,42 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ConnectionPool {
-    private ResourceBundle bundle;
+public final class ConnectionPool {
+    /**
+     * Resource bundle to get needed param from property file.
+     */
+    private final ResourceBundle bundle;
+    /**
+     * This is a constant for resource bundle for url param.
+     */
     private static final String URL_ALIAS = "url";
+    /**
+     * This is a constant for resource bundle for user param.
+     */
     private static final String USER_ALIAS = "user";
+    /**
+     * This is a constant for resource bundle for password param.
+     */
     private static final String PASSWORD_ALIAS = "password";
+    /**
+     * THis is Hikari database driver.
+     */
     private HikariDataSource dataSource;
 
-
-    public ConnectionPool(ResourceBundle bundle) {
-        this.bundle = bundle;
+    /**
+     * Constructor for our connection pool.
+     * @param incomingBundle Resource bundle for our pool
+     */
+    public ConnectionPool(final ResourceBundle incomingBundle) {
+        this.bundle = incomingBundle;
     }
 
 
+    /**
+     * Method to create connection with database by Hikari driver.
+     * @return Connection
+     * @throws EntityDaoException Some very rare exception
+     */
     public Connection getConnection() throws EntityDaoException {
         if (dataSource == null) {
             HikariConfig config = new HikariConfig();

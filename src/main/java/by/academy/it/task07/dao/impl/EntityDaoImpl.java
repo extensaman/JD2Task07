@@ -18,6 +18,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class EntityDaoImpl implements EntityDao {
+    /**
+     *
+     */
     private static final String SELECT_STATEMENT = "SELECT * FROM %s";
     private static final String DELETE_STATEMENT = "DELETE FROM %s WHERE id = %d";
     private static final String INSERT_STATEMENT = "INSERT INTO %s (%s) VALUES (%s)";

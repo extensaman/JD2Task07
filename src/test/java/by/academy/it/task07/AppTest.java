@@ -22,7 +22,7 @@ import static org.hamcrest.CoreMatchers.is;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AppTest extends Assert {
 
-    public static final String DATABASE_H_2 = "databaseH2";
+    public static final String DATABASE = "database";
     private static ConnectionPool connectionPool;
     private static EntityDao dao;//тестовый объект класса EntityDaoMySQLImpl
     private static Map<Long, Object> map = new HashMap<>();//тестовая коллекция map
@@ -41,7 +41,7 @@ public class AppTest extends Assert {
 
     @BeforeClass //метод будет выполняться в начале всех тестов
     public static void setUp() throws Exception {
-        ResourceBundle bundleH2 = ResourceBundle.getBundle(DATABASE_H_2);
+        ResourceBundle bundleH2 = ResourceBundle.getBundle(DATABASE);
         connectionPool = new ConnectionPool(bundleH2);
         assertTrue(connectionPool.getConnection() != null);
         String query = "create table person (id int auto_increment primary key," +
